@@ -1,8 +1,131 @@
 ---
 title: "Data Acquisition"
-author: "Joschka Schwarz"
+author: "Omar Hegazy"
+Matriculation number: "568463"
 ---
+# Challenge: 
+## Get some data via an API.
 
-::: callout-note
-You can delete everything in here and start fresh.
-:::
+```{r}
+library(tidyverse)
+install.packages("devtools", repos = "http://cran.rstudio.com/")
+  
+  library(tidyverse) 
+library(jsonlite)  
+library(glue)      
+library(httr)
+library(data.table)
+
+
+
+
+weather_url <- "http://api.weatherapi.com/v1/current.json?/"
+city<-"Hamburg"
+token <- "cc1ebbea233a4bf0a3e81547210805"
+response <-GET(weather_url, query = list(
+  key  = token,
+  q    = city))
+response
+better_format <-response %>% 
+  .$content %>%
+  rawToChar() %>% 
+  fromJSON()
+data_frame1<-as.data.frame(better_format)
+data_frame1
+```
+# Challenge: 
+## Scrape one of the competitor websites of canyon
+
+```{r}
+
+library(RSQLite)
+library(tidyverse)
+library(httr)
+library(glue)
+library(jsonlite)
+library(rvest)
+library(stringi)
+library(xopen)
+library(dplyr)
+base_url <- 'https://www.rosebikes.com/bikes'
+# 1. Function getting bike family URLs.
+get_bike_family_urls <- function(base_url) {
+  
+  bike_family_urls <- read_html(base_url) %>%
+    html_nodes(css = ".catalog-categories-item > a") %>%
+    html_attr('href') %>%
+    
+    # tibble formatting
+    
+    enframe(name = "position", value = "subdirectory") %>%
+    # Adding the domain because we only got the subdirectories
+    mutate(
+      url = glue('https://www.rosebikes.com{subdirectory}')
+    ) 
+  
+}
+# 2.function to get bike type URLs.
+get_model_urls <- function(url) {
+  
+  bike_type_url <- read_html(url) %>%
+    html_nodes(css = ".catalog-category-bikes__content > a") %>%
+    html_attr('href') %>%
+    enframe(name = "position", value = "url") %>%
+    mutate(url = glue('https://www.rosebikes.com{url}')) 
+}
+# 3. name of each bike 
+get_bike_names <- function(url) {
+  
+  bike_model_name_tbl <- read_html(url) %>%
+    html_nodes(css = ".catalog-category-model__title") %>%
+    html_text() %>%
+    # tibble formatting
+    as_tibble()
+  
+  
+}
+# 4. the prices of each bike 
+get_bike_prices <- function(url) {
+  
+  bike_model_price_tbl <- read_html(url) %>%
+    html_nodes(css = ".product-tile-price__current-value") %>%
+    html_text() %>%
+    # tibble formatting
+    as_tibble()
+  
+}
+#### combining functions in a row to execute code
+bike_family_url_tbl <- get_bike_family_urls(base_url)
+bike_family_url_tbl <- bike_family_url_tbl %>%
+  slice(3:6) # Pick 3 categories
+# table with bike model URLS
+bike_model_url_tbl <- tibble()
+for (i in seq_along(bike_family_url_tbl$url)) {
+  
+  web <- toString(bike_family_url_tbl$url[i])
+  bike_model_url_tbl <- bind_rows(bike_model_url_tbl, get_model_urls(web))
+  
+}
+# table with bike model names
+bike_model_names_tbl <- tibble()
+for (i in seq_along(bike_model_url_tbl$url)) {
+  
+  web <- toString(bike_model_url_tbl$url[i])
+  bike_model_names_tbl <- bind_rows(bike_model_names_tbl, get_bike_names(web))
+  
+}
+# Renaming of columns
+names(bike_model_names_tbl)[1] <- "Bike Model"
+# table with bike prices
+bike_model_prices_tbl <- tibble()
+for (i in seq_along(bike_model_url_tbl$url)) {
+  web <- toString(bike_model_url_tbl$url[i])
+  bike_model_prices_tbl <- bind_rows(bike_model_prices_tbl, get_bike_prices(web))
+}
+# renaming of columns
+names(bike_model_prices_tbl)[1] <- "Bike Prices"
+# combining columns in one table
+table_of_prices <- bind_cols(bike_model_names_tbl,bike_model_prices_tbl)
+knitr::kable(table_of_prices[1:10, ], caption = 'Rosebike.com bicycle prices')
+```
+

@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.269">
-
+<meta name="generator" content="quarto-1.2.475">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-<meta name="author" content="Joschka Schwarz">
-
+<meta name="author" content="Omar Hegazy">
 <title>MyLabJournal - Data Acquisition</title>
 <style>
 code{white-space: pre-wrap;}
@@ -21,8 +18,70 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
-
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../site_libs/quarto-nav/headroom.min.js"></script>
@@ -42,8 +101,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<script id="quarto-search-options" type="application/json">{
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -61,17 +119,13 @@ ul.task-list li input[type="checkbox"] {
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit"
   }
-}</script>
-
-
+}</script><link href="../../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="../../site_libs/pagedtable-1.1/js/pagedtable.js"></script>
 </head>
-
 <body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
-      <div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg navbar-dark "><div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">MyLabJournal</span>
@@ -82,7 +136,7 @@ ul.task-list li input[type="checkbox"] {
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
+<li class="nav-item">
     <a class="nav-link" href="../../index.html">
  <span class="menu-text">Home</span></a>
   </li>  
@@ -90,8 +144,8 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-journal" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Journal</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-journal">    
-        <li>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-journal">
+<li>
     <a class="dropdown-item" href="../../content/01_journal/01_tidyverse.html">
  <span class="dropdown-text">01 Tidyverse</span></a>
   </li>  
@@ -108,7 +162,7 @@ ul.task-list li input[type="checkbox"] {
  <span class="dropdown-text">04 Data Visualization</span></a>
   </li>  
     </ul>
-  </li>
+</li>
   <li class="nav-item">
     <a class="nav-link" href="../../content/02_notes/05_class_notes.html">
  <span class="menu-text">Class notes</span></a>
@@ -118,26 +172,35 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Links</span></a>
   </li>  
 </ul>
-              <div class="quarto-toggle-container">
+<div class="quarto-toggle-container">
                   <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
               </div>
               <div id="quarto-search" class="" title="Search"></div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
-    </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+    </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Contents</h2>
+   
+  <ul class="collapse">
+<li>
+<a href="#challenge" id="toc-challenge" class="nav-link active" data-scroll-target="#challenge"><span class="toc-section-number">1</span>  Challenge:</a>
+  <ul class="collapse">
+<li><a href="#get-some-data-via-an-api." id="toc-get-some-data-via-an-api." class="nav-link" data-scroll-target="#get-some-data-via-an-api."><span class="toc-section-number">1.1</span>  Get some data via an API.</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#challenge-1" id="toc-challenge-1" class="nav-link" data-scroll-target="#challenge-1"><span class="toc-section-number">2</span>  Challenge:</a>
+  <ul class="collapse">
+<li><a href="#scrape-one-of-the-competitor-websites-of-canyon" id="toc-scrape-one-of-the-competitor-websites-of-canyon" class="nav-link" data-scroll-target="#scrape-one-of-the-competitor-websites-of-canyon"><span class="toc-section-number">2.1</span>  Scrape one of the competitor websites of canyon</a></li>
+  </ul>
+</li>
+  </ul></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <h1 class="title">Data Acquisition</h1>
 </div>
 
@@ -148,7 +211,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Joschka Schwarz </p>
+             <p>Omar Hegazy </p>
           </div>
   </div>
     
@@ -157,26 +220,206 @@ ul.task-list li input[type="checkbox"] {
   </div>
   
 
-</header>
+</header><section id="challenge" class="level1" data-number="1"><h1 data-number="1">
+<span class="header-section-number">1</span> Challenge:</h1>
+<section id="get-some-data-via-an-api." class="level2" data-number="1.1"><h2 data-number="1.1" class="anchored" data-anchor-id="get-some-data-via-an-api.">
+<span class="header-section-number">1.1</span> Get some data via an API.</h2>
+<div class="cell" data-hash="02_data_acquisition_cache/html/unnamed-chunk-1_b6df55a94c7ca5a848df804cd72b82b9">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">install.packages</span>(<span class="st">"devtools"</span>, <span class="at">repos =</span> <span class="st">"http://cran.rstudio.com/"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; package 'devtools' successfully unpacked and MD5 sums checked
+#&gt; 
+#&gt; The downloaded binary packages are in
+#&gt;  C:\Users\Micro Systems\AppData\Local\Temp\Rtmps75Inc\downloaded_packages</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>  <span class="fu">library</span>(tidyverse) </span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="fu">library</span>(jsonlite)  </span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="fu">library</span>(glue)      </span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="fu">library</span>(httr)</span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb3-6"><a href="#cb3-6"></a></span>
+<span id="cb3-7"><a href="#cb3-7"></a></span>
+<span id="cb3-8"><a href="#cb3-8"></a></span>
+<span id="cb3-9"><a href="#cb3-9"></a></span>
+<span id="cb3-10"><a href="#cb3-10"></a>weather_url <span class="ot">&lt;-</span> <span class="st">"http://api.weatherapi.com/v1/current.json?/"</span></span>
+<span id="cb3-11"><a href="#cb3-11"></a>city<span class="ot">&lt;-</span><span class="st">"Hamburg"</span></span>
+<span id="cb3-12"><a href="#cb3-12"></a>token <span class="ot">&lt;-</span> <span class="st">"cc1ebbea233a4bf0a3e81547210805"</span></span>
+<span id="cb3-13"><a href="#cb3-13"></a>response <span class="ot">&lt;-</span><span class="fu">GET</span>(weather_url, <span class="at">query =</span> <span class="fu">list</span>(</span>
+<span id="cb3-14"><a href="#cb3-14"></a>  <span class="at">key  =</span> token,</span>
+<span id="cb3-15"><a href="#cb3-15"></a>  <span class="at">q    =</span> city))</span>
+<span id="cb3-16"><a href="#cb3-16"></a>response</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; Response [http://api.weatherapi.com/v1/current.json?%2F=&amp;key=cc1ebbea233a4bf0a3e81547210805&amp;q=Hamburg]
+#&gt;   Date: 2023-05-23 23:02
+#&gt;   Status: 200
+#&gt;   Content-Type: application/json
+#&gt;   Size: 666 B</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>better_format <span class="ot">&lt;-</span>response <span class="sc">%&gt;%</span> </span>
+<span id="cb5-2"><a href="#cb5-2"></a>  .<span class="sc">$</span>content <span class="sc">%&gt;%</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a>  <span class="fu">rawToChar</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb5-4"><a href="#cb5-4"></a>  <span class="fu">fromJSON</span>()</span>
+<span id="cb5-5"><a href="#cb5-5"></a>data_frame1<span class="ot">&lt;-</span><span class="fu">as.data.frame</span>(better_format)</span>
+<span id="cb5-6"><a href="#cb5-6"></a>data_frame1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
 
-<div class="callout-note callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-Note
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["location.name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["location.region"],"name":[2],"type":["chr"],"align":["left"]},{"label":["location.country"],"name":[3],"type":["chr"],"align":["left"]},{"label":["location.lat"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["location.lon"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["location.tz_id"],"name":[6],"type":["chr"],"align":["left"]},{"label":["location.localtime_epoch"],"name":[7],"type":["int"],"align":["right"]},{"label":["location.localtime"],"name":[8],"type":["chr"],"align":["left"]},{"label":["current.last_updated_epoch"],"name":[9],"type":["int"],"align":["right"]},{"label":["current.last_updated"],"name":[10],"type":["chr"],"align":["left"]},{"label":["current.temp_c"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["current.temp_f"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["current.is_day"],"name":[13],"type":["int"],"align":["right"]},{"label":["current.condition.text"],"name":[14],"type":["chr"],"align":["left"]},{"label":["current.condition.icon"],"name":[15],"type":["chr"],"align":["left"]},{"label":["current.condition.code"],"name":[16],"type":["int"],"align":["right"]},{"label":["current.wind_mph"],"name":[17],"type":["dbl"],"align":["right"]},{"label":["current.wind_kph"],"name":[18],"type":["dbl"],"align":["right"]},{"label":["current.wind_degree"],"name":[19],"type":["int"],"align":["right"]},{"label":["current.wind_dir"],"name":[20],"type":["chr"],"align":["left"]},{"label":["current.pressure_mb"],"name":[21],"type":["dbl"],"align":["right"]},{"label":["current.pressure_in"],"name":[22],"type":["dbl"],"align":["right"]},{"label":["current.precip_mm"],"name":[23],"type":["dbl"],"align":["right"]},{"label":["current.precip_in"],"name":[24],"type":["dbl"],"align":["right"]},{"label":["current.humidity"],"name":[25],"type":["int"],"align":["right"]},{"label":["current.cloud"],"name":[26],"type":["int"],"align":["right"]},{"label":["current.feelslike_c"],"name":[27],"type":["dbl"],"align":["right"]},{"label":["current.feelslike_f"],"name":[28],"type":["dbl"],"align":["right"]},{"label":["current.vis_km"],"name":[29],"type":["dbl"],"align":["right"]},{"label":["current.vis_miles"],"name":[30],"type":["dbl"],"align":["right"]},{"label":["current.uv"],"name":[31],"type":["dbl"],"align":["right"]},{"label":["current.gust_mph"],"name":[32],"type":["dbl"],"align":["right"]},{"label":["current.gust_kph"],"name":[33],"type":["dbl"],"align":["right"]}],"data":[{"1":"Hamburg","2":"Hamburg","3":"Germany","4":"53.55","5":"10","6":"Europe/Berlin","7":"1684882942","8":"2023-05-24 1:02","9":"1684882800","10":"2023-05-24 01:00","11":"9","12":"48.2","13":"0","14":"Overcast","15":"//cdn.weatherapi.com/weather/64x64/night/122.png","16":"1009","17":"11.9","18":"19.1","19":"280","20":"W","21":"1020","22":"30.12","23":"0","24":"0","25":"76","26":"100","27":"6.3","28":"43.3","29":"10","30":"6","31":"1","32":"17","33":"27.4"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
 </div>
-<div class="callout-body-container callout-body">
-<p>You can delete everything in here and start fresh.</p>
+</div>
+</section></section><section id="challenge-1" class="level1" data-number="2"><h1 data-number="2">
+<span class="header-section-number">2</span> Challenge:</h1>
+<section id="scrape-one-of-the-competitor-websites-of-canyon" class="level2" data-number="2.1"><h2 data-number="2.1" class="anchored" data-anchor-id="scrape-one-of-the-competitor-websites-of-canyon">
+<span class="header-section-number">2.1</span> Scrape one of the competitor websites of canyon</h2>
+<div class="cell" data-hash="02_data_acquisition_cache/html/unnamed-chunk-2_aa08ade2822a3a54e4232c2401fdcc25">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">library</span>(RSQLite)</span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="fu">library</span>(httr)</span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="fu">library</span>(glue)</span>
+<span id="cb6-5"><a href="#cb6-5"></a><span class="fu">library</span>(jsonlite)</span>
+<span id="cb6-6"><a href="#cb6-6"></a><span class="fu">library</span>(rvest)</span>
+<span id="cb6-7"><a href="#cb6-7"></a><span class="fu">library</span>(stringi)</span>
+<span id="cb6-8"><a href="#cb6-8"></a><span class="fu">library</span>(xopen)</span>
+<span id="cb6-9"><a href="#cb6-9"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb6-10"><a href="#cb6-10"></a>base_url <span class="ot">&lt;-</span> <span class="st">'https://www.rosebikes.com/bikes'</span></span>
+<span id="cb6-11"><a href="#cb6-11"></a><span class="co"># 1. Function getting bike family URLs.</span></span>
+<span id="cb6-12"><a href="#cb6-12"></a>get_bike_family_urls <span class="ot">&lt;-</span> <span class="cf">function</span>(base_url) {</span>
+<span id="cb6-13"><a href="#cb6-13"></a>  </span>
+<span id="cb6-14"><a href="#cb6-14"></a>  bike_family_urls <span class="ot">&lt;-</span> <span class="fu">read_html</span>(base_url) <span class="sc">%&gt;%</span></span>
+<span id="cb6-15"><a href="#cb6-15"></a>    <span class="fu">html_nodes</span>(<span class="at">css =</span> <span class="st">".catalog-categories-item &gt; a"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-16"><a href="#cb6-16"></a>    <span class="fu">html_attr</span>(<span class="st">'href'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-17"><a href="#cb6-17"></a>    </span>
+<span id="cb6-18"><a href="#cb6-18"></a>    <span class="co"># tibble formatting</span></span>
+<span id="cb6-19"><a href="#cb6-19"></a>    </span>
+<span id="cb6-20"><a href="#cb6-20"></a>    <span class="fu">enframe</span>(<span class="at">name =</span> <span class="st">"position"</span>, <span class="at">value =</span> <span class="st">"subdirectory"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-21"><a href="#cb6-21"></a>    <span class="co"># Adding the domain because we only got the subdirectories</span></span>
+<span id="cb6-22"><a href="#cb6-22"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb6-23"><a href="#cb6-23"></a>      <span class="at">url =</span> <span class="fu">glue</span>(<span class="st">'https://www.rosebikes.com{subdirectory}'</span>)</span>
+<span id="cb6-24"><a href="#cb6-24"></a>    ) </span>
+<span id="cb6-25"><a href="#cb6-25"></a>  </span>
+<span id="cb6-26"><a href="#cb6-26"></a>}</span>
+<span id="cb6-27"><a href="#cb6-27"></a><span class="co"># 2.function to get bike type URLs.</span></span>
+<span id="cb6-28"><a href="#cb6-28"></a>get_model_urls <span class="ot">&lt;-</span> <span class="cf">function</span>(url) {</span>
+<span id="cb6-29"><a href="#cb6-29"></a>  </span>
+<span id="cb6-30"><a href="#cb6-30"></a>  bike_type_url <span class="ot">&lt;-</span> <span class="fu">read_html</span>(url) <span class="sc">%&gt;%</span></span>
+<span id="cb6-31"><a href="#cb6-31"></a>    <span class="fu">html_nodes</span>(<span class="at">css =</span> <span class="st">".catalog-category-bikes__content &gt; a"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-32"><a href="#cb6-32"></a>    <span class="fu">html_attr</span>(<span class="st">'href'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-33"><a href="#cb6-33"></a>    <span class="fu">enframe</span>(<span class="at">name =</span> <span class="st">"position"</span>, <span class="at">value =</span> <span class="st">"url"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-34"><a href="#cb6-34"></a>    <span class="fu">mutate</span>(<span class="at">url =</span> <span class="fu">glue</span>(<span class="st">'https://www.rosebikes.com{url}'</span>)) </span>
+<span id="cb6-35"><a href="#cb6-35"></a>}</span>
+<span id="cb6-36"><a href="#cb6-36"></a><span class="co"># 3. name of each bike </span></span>
+<span id="cb6-37"><a href="#cb6-37"></a>get_bike_names <span class="ot">&lt;-</span> <span class="cf">function</span>(url) {</span>
+<span id="cb6-38"><a href="#cb6-38"></a>  </span>
+<span id="cb6-39"><a href="#cb6-39"></a>  bike_model_name_tbl <span class="ot">&lt;-</span> <span class="fu">read_html</span>(url) <span class="sc">%&gt;%</span></span>
+<span id="cb6-40"><a href="#cb6-40"></a>    <span class="fu">html_nodes</span>(<span class="at">css =</span> <span class="st">".catalog-category-model__title"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-41"><a href="#cb6-41"></a>    <span class="fu">html_text</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb6-42"><a href="#cb6-42"></a>    <span class="co"># tibble formatting</span></span>
+<span id="cb6-43"><a href="#cb6-43"></a>    <span class="fu">as_tibble</span>()</span>
+<span id="cb6-44"><a href="#cb6-44"></a>  </span>
+<span id="cb6-45"><a href="#cb6-45"></a>  </span>
+<span id="cb6-46"><a href="#cb6-46"></a>}</span>
+<span id="cb6-47"><a href="#cb6-47"></a><span class="co"># 4. the prices of each bike </span></span>
+<span id="cb6-48"><a href="#cb6-48"></a>get_bike_prices <span class="ot">&lt;-</span> <span class="cf">function</span>(url) {</span>
+<span id="cb6-49"><a href="#cb6-49"></a>  </span>
+<span id="cb6-50"><a href="#cb6-50"></a>  bike_model_price_tbl <span class="ot">&lt;-</span> <span class="fu">read_html</span>(url) <span class="sc">%&gt;%</span></span>
+<span id="cb6-51"><a href="#cb6-51"></a>    <span class="fu">html_nodes</span>(<span class="at">css =</span> <span class="st">".product-tile-price__current-value"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-52"><a href="#cb6-52"></a>    <span class="fu">html_text</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb6-53"><a href="#cb6-53"></a>    <span class="co"># tibble formatting</span></span>
+<span id="cb6-54"><a href="#cb6-54"></a>    <span class="fu">as_tibble</span>()</span>
+<span id="cb6-55"><a href="#cb6-55"></a>  </span>
+<span id="cb6-56"><a href="#cb6-56"></a>}</span>
+<span id="cb6-57"><a href="#cb6-57"></a><span class="do">#### combining functions in a row to execute code</span></span>
+<span id="cb6-58"><a href="#cb6-58"></a>bike_family_url_tbl <span class="ot">&lt;-</span> <span class="fu">get_bike_family_urls</span>(base_url)</span>
+<span id="cb6-59"><a href="#cb6-59"></a>bike_family_url_tbl <span class="ot">&lt;-</span> bike_family_url_tbl <span class="sc">%&gt;%</span></span>
+<span id="cb6-60"><a href="#cb6-60"></a>  <span class="fu">slice</span>(<span class="dv">3</span><span class="sc">:</span><span class="dv">6</span>) <span class="co"># Pick 3 categories</span></span>
+<span id="cb6-61"><a href="#cb6-61"></a><span class="co"># table with bike model URLS</span></span>
+<span id="cb6-62"><a href="#cb6-62"></a>bike_model_url_tbl <span class="ot">&lt;-</span> <span class="fu">tibble</span>()</span>
+<span id="cb6-63"><a href="#cb6-63"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(bike_family_url_tbl<span class="sc">$</span>url)) {</span>
+<span id="cb6-64"><a href="#cb6-64"></a>  </span>
+<span id="cb6-65"><a href="#cb6-65"></a>  web <span class="ot">&lt;-</span> <span class="fu">toString</span>(bike_family_url_tbl<span class="sc">$</span>url[i])</span>
+<span id="cb6-66"><a href="#cb6-66"></a>  bike_model_url_tbl <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(bike_model_url_tbl, <span class="fu">get_model_urls</span>(web))</span>
+<span id="cb6-67"><a href="#cb6-67"></a>  </span>
+<span id="cb6-68"><a href="#cb6-68"></a>}</span>
+<span id="cb6-69"><a href="#cb6-69"></a><span class="co"># table with bike model names</span></span>
+<span id="cb6-70"><a href="#cb6-70"></a>bike_model_names_tbl <span class="ot">&lt;-</span> <span class="fu">tibble</span>()</span>
+<span id="cb6-71"><a href="#cb6-71"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(bike_model_url_tbl<span class="sc">$</span>url)) {</span>
+<span id="cb6-72"><a href="#cb6-72"></a>  </span>
+<span id="cb6-73"><a href="#cb6-73"></a>  web <span class="ot">&lt;-</span> <span class="fu">toString</span>(bike_model_url_tbl<span class="sc">$</span>url[i])</span>
+<span id="cb6-74"><a href="#cb6-74"></a>  bike_model_names_tbl <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(bike_model_names_tbl, <span class="fu">get_bike_names</span>(web))</span>
+<span id="cb6-75"><a href="#cb6-75"></a>  </span>
+<span id="cb6-76"><a href="#cb6-76"></a>}</span>
+<span id="cb6-77"><a href="#cb6-77"></a><span class="co"># Renaming of columns</span></span>
+<span id="cb6-78"><a href="#cb6-78"></a><span class="fu">names</span>(bike_model_names_tbl)[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="st">"Bike Model"</span></span>
+<span id="cb6-79"><a href="#cb6-79"></a><span class="co"># table with bike prices</span></span>
+<span id="cb6-80"><a href="#cb6-80"></a>bike_model_prices_tbl <span class="ot">&lt;-</span> <span class="fu">tibble</span>()</span>
+<span id="cb6-81"><a href="#cb6-81"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(bike_model_url_tbl<span class="sc">$</span>url)) {</span>
+<span id="cb6-82"><a href="#cb6-82"></a>  web <span class="ot">&lt;-</span> <span class="fu">toString</span>(bike_model_url_tbl<span class="sc">$</span>url[i])</span>
+<span id="cb6-83"><a href="#cb6-83"></a>  bike_model_prices_tbl <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(bike_model_prices_tbl, <span class="fu">get_bike_prices</span>(web))</span>
+<span id="cb6-84"><a href="#cb6-84"></a>}</span>
+<span id="cb6-85"><a href="#cb6-85"></a><span class="co"># renaming of columns</span></span>
+<span id="cb6-86"><a href="#cb6-86"></a><span class="fu">names</span>(bike_model_prices_tbl)[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="st">"Bike Prices"</span></span>
+<span id="cb6-87"><a href="#cb6-87"></a><span class="co"># combining columns in one table</span></span>
+<span id="cb6-88"><a href="#cb6-88"></a>table_of_prices <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(bike_model_names_tbl,bike_model_prices_tbl)</span>
+<span id="cb6-89"><a href="#cb6-89"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(table_of_prices[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, ], <span class="at">caption =</span> <span class="st">'Rosebike.com bicycle prices'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped">
+<caption>Rosebike.com bicycle prices</caption>
+<thead><tr class="header">
+<th style="text-align: left;">Bike Model</th>
+<th style="text-align: left;">Bike Prices</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">BACKROAD AL Apex 1x11</td>
+<td style="text-align: left;">€2,049.00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BACKROAD AL GRX RX600 1X11</td>
+<td style="text-align: left;">€2,349.00</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BACKROAD AL GRX RX810 1X11</td>
+<td style="text-align: left;">€2,549.00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BACKROAD AL GRX RX400</td>
+<td style="text-align: left;">€1,999.00</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BACKROAD AL GRX RX400</td>
+<td style="text-align: left;">€1,999.00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BACKROAD AL GRX RX600</td>
+<td style="text-align: left;">€2,399.00</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BACKROAD AL GRX RX810</td>
+<td style="text-align: left;">€2,599.00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BACKROAD AL GRX600 RANDONNEUR</td>
+<td style="text-align: left;">€2,499.00</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BACKROAD AL GRX RX400</td>
+<td style="text-align: left;">€1,999.00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BACKROAD AL GRX RX400</td>
+<td style="text-align: left;">€1,999.00</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 
 
-
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
